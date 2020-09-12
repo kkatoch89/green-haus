@@ -1,0 +1,32 @@
+.resultsSection {
+	background: $lightAccent;
+
+	h2 {
+		color: $darkAccent;
+	}
+
+	.contentContainer {
+		justify-content: space-evenly;
+	}
+}
+
+// RESULTS CARDS GRID
+.resultsGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 2rem;
+	// align-items: stretch;
+}
+
+.card {
+	// @include devBorder();
+	border: 5px solid $darkAccent;
+	height: 10rem;
+	background: linear-gradient(0deg, rgba(#000, 0.6)),
+		url(../../assets/cards-background.jpg);
+	background-size: cover;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
