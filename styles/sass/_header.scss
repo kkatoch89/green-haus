@@ -1,0 +1,50 @@
+// <span>Photo by <a
+// href="https://unsplash.com/@ninjason?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Jason
+// Leung</a> on <a
+// href="https://unsplash.com/s/photos/plants?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+header {
+	@include devBorder(orangered);
+	height: 100vh;
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.65)),
+		url(../../assets/hero-img.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+
+	h1 {
+		font-family: 'Press Start 2P', cursive;
+		font-size: 6rem;
+		color: $lightAccent;
+		line-height: 1;
+		// padding-top: 1rem;
+	}
+
+	h3 {
+		color: $lightAccent;
+		font-weight: 700;
+		font-size: 2.5rem;
+		line-height: 1.2;
+		letter-spacing: 2.6px;
+		background: $darkAccent;
+		padding: 5px;
+	}
+
+	p {
+		margin: 1.5rem 0;
+	}
+
+	.headerContainer {
+		display: flex;
+		flex-direction: column;
+		// border: 4px solid $darkAccent;
+		// border-radius: 10px;
+	}
+
+	.descriptionContainer {
+		background: rgba($color: #000000, $alpha: 0.6);
+		padding: 2.5rem;
+		display: flex;
+		flex-direction: column;
+		border-radius: 0 0 20px 20px;
+	}
+}

@@ -1,0 +1,62 @@
+// VARIABLES
+// Fonts
+$baseFont: 'Chathura', sans-serif;
+
+// Colors
+$backgroundColorPrimary: #111010;
+$backgroundColorSecondary: #220303;
+$lightAccent: #d5e6e4;
+$darkAccent: #05386b;
+
+// Selectors
+$aTagsHover: '&:active, &:hover';
+
+// Image Offset
+$imgOffset: 2rem;
+$imgOffsetSmall: 1rem;
+
+// MIXINS
+
+// border visualization for testing stage
+@mixin devBorder($borderColor) {
+	border: solid 1px $borderColor;
+}
+
+// image box-shadow for offset effect
+@mixin boxShadow($top, $left, $color) {
+	-webkit-box-shadow: $top $left 0 $color;
+	-moz-box-shadow: $top $left 0 $color;
+	box-shadow: $top $left 0 $color;
+}
+
+// font style for subtitles
+@mixin subHeaderFont($sizeValue) {
+	font-size: $sizeValue * 1rem;
+	font-family: $baseFont, sans-serif;
+	font-weight: 700;
+}
+
+// vertical + horizontal centering w/ flexbox
+@mixin flexCenter() {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+// form for smaller screens
+@mixin formSmall() {
+	grid-template-rows: auto auto 25rem;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+		'userName'
+		'userEmail'
+		'userComments'
+		'btn';
+
+	label,
+	input,
+	textarea,
+	textarea::placeholder {
+		font-size: 2.5rem;
+	}
+}
