@@ -8,6 +8,10 @@
 	.contentContainer {
 		justify-content: space-evenly;
 	}
+
+	.animationContainer {
+		grid-area: animationContainer;
+	}
 }
 
 // RESULTS CARDS GRID
@@ -15,7 +19,13 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	gap: 2rem;
+	grid-area: resultsGrid;
 	// align-items: stretch;
+}
+
+.resultsContent {
+	display: grid;
+	grid-template-areas: '';
 }
 
 .card {

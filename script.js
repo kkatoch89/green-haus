@@ -548,16 +548,15 @@ plantsApp.displayResults = function (arr) {
 plantsApp.smoothScroll = function () {
 	$('button').on('click', function (e) {
 		// Disable default clicking link behavior
-		if (this.hash !== '') {
+		if (this.hash !== '' && this.hash !== undefined) {
 			e.preventDefault();
 			let hash = this.hash;
-			console.log(this.hash);
-
+			console.log(hash);
 			$('html, body').animate(
 				{
 					scrollTop: $(hash).offset().top,
 				},
-				800,
+				fadeIn(800),
 				function () {
 					window.location.hash = hash;
 				}
@@ -565,12 +564,31 @@ plantsApp.smoothScroll = function () {
 		}
 	});
 };
+// plantsApp.smoothScroll = function () {
+// 	$('button').on('click', function (e) {
+// 		// Disable default clicking link behavior
+// 		// console.log(this.hash);
+// 		if (this.hash !== '') {
+// 			e.preventDefault();
+// 			let hash = this.hash;
+// 			$('html, body').animate(
+// 				{
+// 					scrollTop: $(hash).offset().top,
+// 				},
+// 				fadeIn(800),
+// 				function () {
+// 					window.location.hash = hash;
+// 				}
+// 			);
+// 		}
+// 	});
+// };
 
 // Init function
 plantsApp.init = function () {
-	// plantsApp.animation.speed();
-	plantsApp.smoothScroll();
-	plantsApp.formSubmit();
+	plantsApp.animation.speed();
+	// plantsApp.smoothScroll();
+	// plantsApp.formSubmit();
 };
 
 $(function () {

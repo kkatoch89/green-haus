@@ -1,0 +1,48 @@
+// ANIMATION GRIDS
+.tileGrid {
+	width: 24rem;
+	height: 20rem;
+	// background-color: $lightAccent;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.tileGrid div {
+	height: 2rem;
+	width: 2rem;
+	border: 1px solid black;
+	background-color: orangered;
+}
+
+.landed {
+	background: orangered;
+}
+
+.tileGrid .hidden {
+	background: royalblue;
+	// visibility: hidden;
+
+	& .landed {
+		background: orangered;
+	}
+}
+
+.shapeBlock {
+	&sun {
+		background: yellow;
+	}
+
+	&cat {
+		background: #333;
+	}
+
+	&leaf,
+	&cactus {
+		background: yellowgreen;
+	}
+
+	&stem,
+	&outline {
+		background: green;
+	}
+}
