@@ -163,7 +163,7 @@ const shapes = {
 			width * 10 + 4,
 		],
 	},
-	cactus: {
+	lowMaint: {
 		type: 'cactus',
 		shape: [
 			5,
@@ -518,20 +518,58 @@ plantsApp.animation.speed = function () {
 plantsApp.formSubmit = function () {
 	$('form').on('submit', function (e) {
 		e.preventDefault();
+		$('resultsGrid').empty();
 		const userInput = $('input:checked').val();
-		plantsApp.filter(userInput);
+		const resultsArr = plantsApp.filter(userInput).slice(0, 6);
+		// console.log(resultsArr);
+		plantsApp.displayResults(resultsArr);
 	});
 };
 
+// Filter database with user input
 plantsApp.filter = function (criteria) {
 	const filteredArray = plantsArray.filter((el) => {
 		return el[criteria];
 	});
-	console.log(filteredArray);
+	return filteredArray;
 };
 
+// Display results on individual cards
+plantsApp.displayResults = function (arr) {
+	arr.forEach((plant) => {
+		const plantName = plant.name;
+		const title = $('<h3>').text(plantName);
+		const resultCard = $('<li>').addClass('card').append(title);
+		$('.resultsGrid').append(resultCard);
+	});
+};
+
+// Smooth scroll function
+plantsApp.smoothScroll = function () {
+	$('button').on('click', function (e) {
+		// Disable default clicking link behavior
+		if (this.hash !== '') {
+			e.preventDefault();
+			let hash = this.hash;
+			console.log(this.hash);
+
+			$('html, body').animate(
+				{
+					scrollTop: $(hash).offset().top,
+				},
+				800,
+				function () {
+					window.location.hash = hash;
+				}
+			);
+		}
+	});
+};
+
+// Init function
 plantsApp.init = function () {
 	// plantsApp.animation.speed();
+	plantsApp.smoothScroll();
 	plantsApp.formSubmit();
 };
 
