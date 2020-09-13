@@ -518,9 +518,16 @@ plantsApp.animation.speed = function () {
 plantsApp.formSubmit = function () {
 	$('form').on('submit', function (e) {
 		e.preventDefault();
-		const criteria = $('input:checked').val();
-		console.log(criteria);
+		const userInput = $('input:checked').val();
+		plantsApp.filter(userInput);
 	});
+};
+
+plantsApp.filter = function (criteria) {
+	const filteredArray = plantsArray.filter((el) => {
+		return el[criteria];
+	});
+	console.log(filteredArray);
 };
 
 plantsApp.init = function () {
