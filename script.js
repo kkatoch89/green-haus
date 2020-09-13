@@ -383,6 +383,38 @@ const shapes = {
 	},
 };
 
+const plantsArray = [
+	{ name: 'Scarlet Star', pets: true, sun: true, lowMaint: false },
+	{ name: 'Chinese Money Plant', pets: true, sun: true, lowMaint: false },
+	{ name: 'Prickly Pear Cactus', pets: true, sun: true, lowMaint: true },
+	{ name: 'Mini Rubber Plant', pets: true, sun: true, lowMaint: true },
+	{ name: 'Hoya Vine', pets: true, sun: false, lowMaint: false },
+	{ name: 'Ponytail Palm', pets: true, sun: true, lowMaint: true },
+	{ name: 'Staghorn Fern', pets: true, sun: false, lowMaint: true },
+	{ name: "Bird's Nest Fern", pets: true, sun: false, lowMaint: true },
+	{ name: 'Chinese Evergreen', pets: false, sun: false, lowMaint: true },
+	{ name: 'Zanzibar Gem', pets: false, sun: true, lowMaint: true },
+	{ name: 'Moth Orchid', pets: true, sun: false, lowMaint: false },
+	{ name: 'Snake Plant', pets: false, sun: true, lowMaint: true },
+	{ name: 'Kaffir Lily Plant', pets: false, sun: true, lowMaint: true },
+	{ name: 'Jade Plant', pets: false, sun: true, lowMaint: true },
+	{ name: 'Philodendrons', pets: false, sun: true, lowMaint: true },
+	{ name: 'Fiddle Leaf Fig', pets: false, sun: true, lowMaint: true },
+	{ name: 'Aloe Vera', pets: false, sun: true, lowMaint: true },
+	{ name: 'Bunny Ear Cactus', pets: false, sun: true, lowMaint: true },
+	{ name: 'Christmas Cactus', pets: true, sun: true, lowMaint: false },
+	{ name: 'Easter Cactus', pets: true, sun: false, lowMaint: false },
+];
+// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
+// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
+// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
+// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
+// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
+// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
+// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
+// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
+// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false }),
+
 /********** 
 PSEUDO-CODE
 

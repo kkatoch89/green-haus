@@ -583,3 +583,9 @@ input[type='checkbox']:focus + label::before {
       -ms-flex-align: center;
           align-items: center;
 }
+
+.card h3 {
+  font-weight: 700;
+  color: #d5e6e4;
+  font-size: 20px;
+}

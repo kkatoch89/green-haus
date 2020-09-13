@@ -29,4 +29,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	h3 {
+		font-weight: 700;
+		color: $lightAccent;
+		font-size: 20px;
+	}
 }
