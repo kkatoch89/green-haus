@@ -1,4 +1,3 @@
-let blocksArray = $('.tileGrid > div').toArray();
 // let copyBlocksArray = Array.from(document.querySelectorAll('.tileGrid div'));
 let blocks = $('.tileGrid > div');
 const width = 12;
@@ -400,15 +399,6 @@ const plantsArray = [
 	{ name: 'Christmas Cactus', pets: true, sun: true, lowMaint: false },
 	{ name: 'Easter Cactus', pets: true, sun: false, lowMaint: false },
 ];
-// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
-// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
-// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
-// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
-// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
-// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
-// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
-// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false },
-// { name: 'Scarlett Star', pets: false, sun: false, lowMaint: false }),
 
 /********** 
 PSEUDO-CODE
@@ -430,11 +420,16 @@ const plantsApp = {};
 plantsApp.animation = {};
 
 // plantsApp.animation.shapeType;
-let shapeType = 'pets';
+let shapeType = 'leaf';
 let selection = shapes[shapeType];
 let shape = selection.shape;
 // let color = selection.color;
 let currentPosition = 0;
+
+// Creating array of animation grids
+plantsApp.animation.arrayGenerator = function (gridNumber) {
+	return $(`.tileGrid${gridNumber} > div`).toArray();
+};
 
 // Drawing the shapes
 plantsApp.animation.draw = function () {
@@ -486,10 +481,10 @@ plantsApp.animation.undraw = function () {
 
 // Shapes falling function
 plantsApp.animation.fallingShapes = function () {
-	// plantsApp.animation.undraw();
-	// currentPosition += width;
+	plantsApp.animation.undraw();
+	currentPosition += width;
 	plantsApp.animation.draw();
-	// plantsApp.animation.landing();
+	plantsApp.animation.landing();
 };
 
 // Draw another shape upon landing
@@ -508,6 +503,14 @@ plantsApp.animation.landing = function () {
 // Speed of animation
 plantsApp.animation.speed = function () {
 	setInterval(plantsApp.animation.fallingShapes, 200);
+};
+
+// Animation in form section
+plantsApp.animation.formSection = function () {
+	blocksArray = plantsApp.animation.arrayGenerator(2);
+	plantsApp.animation.speed();
+	blocksArray = plantsApp.animation.arrayGenerator(1);
+	plantsApp.animation.speed();
 };
 
 // Capture user input
@@ -583,9 +586,10 @@ plantsApp.smoothScroll = function () {
 
 // Init function
 plantsApp.init = function () {
-	plantsApp.animation.speed();
+	// plantsApp.animation.formSection();
+	// plantsApp.animation.speed();
 	// plantsApp.smoothScroll();
-	plantsApp.formSubmit();
+	// plantsApp.formSubmit();
 };
 
 $(function () {

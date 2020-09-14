@@ -9,6 +9,7 @@ body {
 }
 
 .wrapper {
+	@include devBorder(orangeRed);
 	width: 95%;
 	max-width: 1360px;
 	margin: 0 auto;

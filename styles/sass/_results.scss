@@ -1,5 +1,7 @@
 .resultsSection {
 	background: $lightAccent;
+	position: relative;
+	overflow: hidden;
 
 	h2 {
 		color: $darkAccent;
@@ -9,9 +11,21 @@
 		justify-content: space-evenly;
 	}
 
-	.animationContainer {
-		grid-area: animationContainer;
+	// .animationContainer {
+	// 	grid-area: animationContainer;
+	// 	height: 60vh;
+	// 	position: relative;
+	// }
+
+	.tileGrid {
+		position: absolute;
+		top: 0;
 	}
+}
+
+.resultsContainer {
+	display: grid;
+	grid-template-areas: 'resultsGrid AnimationContainer ';
 }
 
 // RESULTS CARDS GRID
