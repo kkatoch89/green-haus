@@ -6,7 +6,6 @@ const width = 12;
 // ANIMATION SHAPES
 const shapes = {
 	pets: {
-		type: 'pets',
 		shape: [
 			1,
 			4,
@@ -69,11 +68,9 @@ const shapes = {
 			width * 10 + 5,
 			width * 10 + 6,
 			width * 10 + 7,
-			width * 10 + 8,
 		],
 	},
 	leaf: {
-		type: 'leaf',
 		shape: [
 			4,
 			width + 3,
@@ -164,7 +161,6 @@ const shapes = {
 		],
 	},
 	lowMaint: {
-		type: 'cactus',
 		shape: [
 			5,
 			6,
@@ -340,7 +336,6 @@ const shapes = {
 		],
 	},
 	sun: {
-		type: 'sun',
 		shape: [
 			5,
 			width + 1,
@@ -434,9 +429,9 @@ PSEUDO-CODE
 const plantsApp = {};
 plantsApp.animation = {};
 
-plantsApp.animation.shapeType;
-let shapeType = 'sun';
-let selection = shapes.sun;
+// plantsApp.animation.shapeType;
+let shapeType = 'pets';
+let selection = shapes[shapeType];
 let shape = selection.shape;
 // let color = selection.color;
 let currentPosition = 0;
@@ -444,9 +439,10 @@ let currentPosition = 0;
 // Drawing the shapes
 plantsApp.animation.draw = function () {
 	// console.log(color);
+	console.log(selection);
 	if (selection.outline) {
 		shape.forEach((index) => {
-			shapes.leaf.outline.forEach((outlineIndex) => {
+			selection.outline.forEach((outlineIndex) => {
 				if (index === outlineIndex) {
 					blocksArray[currentPosition + index].classList.add(
 						'shapeBlockoutline'
@@ -490,10 +486,10 @@ plantsApp.animation.undraw = function () {
 
 // Shapes falling function
 plantsApp.animation.fallingShapes = function () {
-	plantsApp.animation.undraw();
-	currentPosition += width;
+	// plantsApp.animation.undraw();
+	// currentPosition += width;
 	plantsApp.animation.draw();
-	plantsApp.animation.landing();
+	// plantsApp.animation.landing();
 };
 
 // Draw another shape upon landing
@@ -503,7 +499,7 @@ plantsApp.animation.landing = function () {
 			blocksArray[currentPosition + index].classList.contains('landed')
 		)
 	) {
-		currentPosition -= 240;
+		currentPosition = 0;
 	}
 	// New shape falling
 	plantsApp.animation.draw();
@@ -511,17 +507,17 @@ plantsApp.animation.landing = function () {
 
 // Speed of animation
 plantsApp.animation.speed = function () {
-	setInterval(plantsApp.animation.fallingShapes, 1000);
+	setInterval(plantsApp.animation.fallingShapes, 200);
 };
 
 // Capture user input
 plantsApp.formSubmit = function () {
 	$('form').on('submit', function (e) {
 		e.preventDefault();
-		$('resultsGrid').empty();
+		$('.resultsGrid').empty();
 		const userInput = $('input:checked').val();
 		const resultsArr = plantsApp.filter(userInput).slice(0, 6);
-		// console.log(resultsArr);
+		console.log(resultsArr);
 		plantsApp.displayResults(resultsArr);
 	});
 };
@@ -547,23 +543,24 @@ plantsApp.displayResults = function (arr) {
 // Smooth scroll function
 plantsApp.smoothScroll = function () {
 	$('button').on('click', function (e) {
+		console.log(e);
+		const hash = $(this).attr('dataTarget');
+		const target = $('#' + hash);
+		$('#whatevermyid');
 		// Disable default clicking link behavior
-		if (this.hash !== '' && this.hash !== undefined) {
-			e.preventDefault();
-			let hash = this.hash;
-			console.log(hash);
-			$('html, body').animate(
-				{
-					scrollTop: $(hash).offset().top,
-				},
-				fadeIn(800),
-				function () {
-					window.location.hash = hash;
-				}
-			);
-		}
+		e.preventDefault();
+		$('html, body').animate(
+			{
+				scrollTop: $(target).offset().top,
+			},
+			800,
+			function () {
+				window.location.hash = hash;
+			}
+		);
 	});
 };
+
 // plantsApp.smoothScroll = function () {
 // 	$('button').on('click', function (e) {
 // 		// Disable default clicking link behavior
@@ -588,7 +585,7 @@ plantsApp.smoothScroll = function () {
 plantsApp.init = function () {
 	plantsApp.animation.speed();
 	// plantsApp.smoothScroll();
-	// plantsApp.formSubmit();
+	plantsApp.formSubmit();
 };
 
 $(function () {

@@ -11,7 +11,7 @@
 	height: 2rem;
 	width: 2rem;
 	border: 1px solid black;
-	background-color: orangered;
+	// background-color: orangered;
 }
 
 .landed {
@@ -19,8 +19,9 @@
 }
 
 .tileGrid .hidden {
-	background: royalblue;
+	// background: royalblue;
 	// visibility: hidden;
+	border-bottom: 2px solid yellow;
 
 	& .landed {
 		background: orangered;
@@ -32,16 +33,15 @@
 		background: yellow;
 	}
 
-	&cat {
+	&pets {
 		background: #333;
 	}
 
 	&leaf,
-	&cactus {
+	&lowMaint {
 		background: yellowgreen;
 	}
 
-	&stem,
 	&outline {
 		background: green;
 	}

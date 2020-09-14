@@ -9,6 +9,7 @@
 		display: grid;
 		grid-template-areas: 'formContainer formContainer tileGrid tileGrid';
 		gap: 2rem;
+		align-items: center;
 	}
 
 	.formContainer {

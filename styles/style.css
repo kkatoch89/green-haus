@@ -395,7 +395,6 @@ h2 {
   height: 2rem;
   width: 2rem;
   border: 1px solid black;
-  background-color: orangered;
 }
 
 .landed {
@@ -403,7 +402,7 @@ h2 {
 }
 
 .tileGrid .hidden {
-  background: royalblue;
+  border-bottom: 2px solid yellow;
 }
 
 .tileGrid .hidden .landed {
@@ -414,15 +413,15 @@ h2 {
   background: yellow;
 }
 
-.shapeBlockcat {
+.shapeBlockpets {
   background: #333;
 }
 
-.shapeBlockleaf, .shapeBlockcactus {
+.shapeBlockleaf, .shapeBlocklowMaint {
   background: yellowgreen;
 }
 
-.shapeBlockstem, .shapeBlockoutline {
+.shapeBlockoutline {
   background: green;
 }
 
@@ -505,6 +504,9 @@ header .descriptionContainer {
   display: grid;
       grid-template-areas: 'formContainer formContainer tileGrid tileGrid';
   gap: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .formSection .formContainer {
