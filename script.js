@@ -418,6 +418,7 @@ PSEUDO-CODE
 // Create empty object to hold all code
 const plantsApp = {};
 plantsApp.animation = {};
+plantsApp.animation.animationEngine = {};
 
 // plantsApp.animation.shapeType;
 let shapeType = 'leaf';
@@ -428,11 +429,11 @@ let currentPosition = 0;
 
 // Creating array of animation grids
 plantsApp.animation.arrayGenerator = function (gridNumber) {
-	return $(`.tileGrid${gridNumber} > div`).toArray();
+	blocksArray = $(`.tileGrid${gridNumber} > div`).toArray();
 };
 
 // Drawing the shapes
-plantsApp.animation.draw = function () {
+plantsApp.animation.animationEngine.draw = function () {
 	// console.log(color);
 	console.log(selection);
 	if (selection.outline) {
@@ -460,7 +461,7 @@ plantsApp.animation.draw = function () {
 };
 
 // Undraw the shape
-plantsApp.animation.undraw = function () {
+plantsApp.animation.animationEngine.undraw = function () {
 	shape.forEach((index) => {
 		if (selection.outline) {
 			blocksArray[currentPosition + index].classList.remove(
@@ -480,15 +481,15 @@ plantsApp.animation.undraw = function () {
 // WHERE DOES THIS GO IN plantsApp OBJECT?
 
 // Shapes falling function
-plantsApp.animation.fallingShapes = function () {
-	plantsApp.animation.undraw();
+plantsApp.animation.animationEngine.fallingShapes = function () {
+	plantsApp.animation.animationEngine.undraw();
 	currentPosition += width;
-	plantsApp.animation.draw();
-	plantsApp.animation.landing();
+	plantsApp.animation.animationEngine.draw();
+	plantsApp.animation.animationEngine.landing();
 };
 
 // Draw another shape upon landing
-plantsApp.animation.landing = function () {
+plantsApp.animation.animationEngine.landing = function () {
 	if (
 		shape.some((index) =>
 			blocksArray[currentPosition + index].classList.contains('landed')
@@ -497,31 +498,58 @@ plantsApp.animation.landing = function () {
 		currentPosition = 0;
 	}
 	// New shape falling
-	plantsApp.animation.draw();
+	plantsApp.animation.animationEngine.draw();
 };
 
 // Speed of animation
-plantsApp.animation.speed = function () {
-	setInterval(plantsApp.animation.fallingShapes, 200);
+plantsApp.animation.animationEngine.speed = function () {
+	setInterval(plantsApp.animation.animationEngine.fallingShapes, 200);
+};
+
+// Animation start
+plantsApp.animation.start = function (grid) {
+	let blocksArray = plantsApp.animation.arrayGenerator(grid);
+	plantsApp.animation.animationEngine.speed();
 };
 
 // Animation in form section
-plantsApp.animation.formSection = function () {
-	blocksArray = plantsApp.animation.arrayGenerator(2);
-	plantsApp.animation.speed();
-	blocksArray = plantsApp.animation.arrayGenerator(1);
-	plantsApp.animation.speed();
-};
+// plantsApp.animation.formSection = function () {
+// 	{
+// 		blocksArray = plantsApp.animation.arrayGenerator(2);
+// 		plantsApp.animation.speed();
+// 	}
+// 	{
+// 		blocksArray = plantsApp.animation.arrayGenerator(1);
+// 		plantsApp.animation.speed();
+// 	}
+// };
 
 // Capture user input
 plantsApp.formSubmit = function () {
 	$('form').on('submit', function (e) {
 		e.preventDefault();
+		console.log('submit');
 		$('.resultsGrid').empty();
 		const userInput = $('input:checked').val();
 		const resultsArr = plantsApp.filter(userInput).slice(0, 6);
-		console.log(resultsArr);
+		// console.log(resultsArr);
 		plantsApp.displayResults(resultsArr);
+
+		const clicked = e.target;
+		console.log(clicked);
+		// const hash = $(this).attr('dataTarget');
+		// const target = $('#' + hash);
+		// Disable default clicking link behavior
+		// e.preventDefault();
+		// $('html, body').animate(
+		// 	{
+		// 		scrollTop: $(target).offset().top,
+		// 	},
+		// 	800,
+		// 	function () {
+		// 		window.location.hash = hash;
+		// 	}
+		// );
 	});
 };
 
@@ -546,7 +574,7 @@ plantsApp.displayResults = function (arr) {
 // Smooth scroll function
 plantsApp.smoothScroll = function () {
 	$('button').on('click', function (e) {
-		console.log(e);
+		console.log('Scrolling');
 		const hash = $(this).attr('dataTarget');
 		const target = $('#' + hash);
 		$('#whatevermyid');
@@ -564,32 +592,74 @@ plantsApp.smoothScroll = function () {
 	});
 };
 
-// plantsApp.smoothScroll = function () {
-// 	$('button').on('click', function (e) {
-// 		// Disable default clicking link behavior
-// 		// console.log(this.hash);
-// 		if (this.hash !== '') {
-// 			e.preventDefault();
-// 			let hash = this.hash;
-// 			$('html, body').animate(
-// 				{
-// 					scrollTop: $(hash).offset().top,
-// 				},
-// 				fadeIn(800),
-// 				function () {
-// 					window.location.hash = hash;
-// 				}
-// 			);
-// 		}
-// 	});
-// };
-
 // Init function
 plantsApp.init = function () {
+	$('.btnScroll').on('click', function (e) {
+		console.log(e);
+		const hash = $(this).attr('dataTarget');
+		const target = $('#' + hash);
+		$('#whatevermyid');
+		// Disable default clicking link behavior
+		e.preventDefault();
+		$('html, body').animate(
+			{
+				scrollTop: $(target).offset().top,
+			},
+			800,
+			function () {
+				window.location.hash = hash;
+			}
+		);
+	});
+
+	$('form').on('submit', function (e) {
+		e.preventDefault();
+		console.log('submit');
+		$('.resultsGrid').empty();
+		const userInput = $('input:checked').val();
+		const resultsArr = plantsApp.filter(userInput).slice(0, 6);
+		console.log(resultsArr);
+		plantsApp.displayResults(resultsArr);
+
+		const hash = $(this).attr('dataTarget');
+		// console.log(hash);
+
+		const target = $('#' + hash);
+		$('#whatevermyid');
+		// Disable default clicking link behavior
+		e.preventDefault();
+		$('html, body').animate(
+			{
+				scrollTop: $(target).offset().top,
+			},
+			800,
+			function () {
+				window.location.hash = hash;
+			}
+		);
+		// const clicked = e.target;
+		// console.log(clicked);
+		// const hash = $(this).attr('dataTarget');
+		// const target = $('#' + hash);
+		// Disable default clicking link behavior
+		// e.preventDefault();
+		// $('html, body').animate(
+		// 	{
+		// 		scrollTop: $(target).offset().top,
+		// 	},
+		// 	800,
+		// 	function () {
+		// 		window.location.hash = hash;
+		// 	}
+		// );
+	});
+	// plantsApp.animation.start(1);
+	// plantsApp.animation.start(2);
+	// plantsApp.animation.arrayGenerator(2);
 	// plantsApp.animation.formSection();
 	// plantsApp.animation.speed();
-	// plantsApp.smoothScroll();
 	// plantsApp.formSubmit();
+	// plantsApp.smoothScroll();
 };
 
 $(function () {
