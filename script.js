@@ -1,4 +1,4 @@
-// ANIMATION SHAPES
+// ANIMATION SHAPES & CORRESPONDING TITLES
 const width = 12;
 const shapes = {
 	pets: {

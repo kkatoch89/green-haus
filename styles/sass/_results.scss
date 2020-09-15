@@ -6,23 +6,15 @@
 		color: $darkAccent;
 		padding-bottom: 4rem;
 		text-align: center;
-		// width: 65%;
 	}
 
 	.contentContainer {
 		padding-left: 8rem;
 		position: relative;
 		display: flex;
-		// justify-content: center;
 		border-left: 3px solid $midAccent;
 		border-right: 3px solid $midAccent;
 	}
-
-	// .animationContainer {
-	// 	grid-area: animationContainer;
-	// 	height: 60vh;
-	// 	position: relative;
-	// }
 
 	.textContent {
 		width: 75%;
@@ -35,20 +27,11 @@
 	}
 }
 
-// .resultsContainer {
-// 	// display: grid;
-// 	// grid-template-areas: 'resultsGrid AnimationContainer';
-// }
-
 // RESULTS CARDS GRID
 .resultsGrid {
-	// width: 65%;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	gap: 2rem;
-	// padding: 0 2.5rem;
-	// grid-area: resultsGrid;
-	// align-items: stretch;
 }
 
 .resultsContent {
@@ -57,7 +40,6 @@
 }
 
 .card {
-	// @include devBorder();
 	border: 5px solid $darkAccent;
 	height: 10rem;
 	background: linear-gradient(0deg, rgba(#000, 0.6)),
