@@ -1,6 +1,6 @@
 .resultsSection {
 	background: $lightAccent;
-	position: relative;
+
 	overflow: hidden;
 
 	h2 {
@@ -8,6 +8,7 @@
 	}
 
 	.contentContainer {
+		position: relative;
 		justify-content: space-evenly;
 	}
 
@@ -17,9 +18,10 @@
 	// 	position: relative;
 	// }
 
-	.tileGrid {
+	.animationGrid {
 		position: absolute;
 		top: 0;
+		right: 0;
 	}
 }
 

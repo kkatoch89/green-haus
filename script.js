@@ -1,8 +1,5 @@
-// let copyBlocksArray = Array.from(document.querySelectorAll('.tileGrid div'));
-let blocks = $('.tileGrid > div');
-const width = 12;
-
 // ANIMATION SHAPES
+const width = 12;
 const shapes = {
 	pets: {
 		shape: [
@@ -415,25 +412,25 @@ PSEUDO-CODE
 
 */
 
+let blocksArray = $(`.animationGrid1 > div`)
+	.toArray()
+	.concat($('.animationGrid2 > div').toArray());
+let blocks = $('.animationGrid > div');
+
 // Create empty object to hold all code
 const plantsApp = {};
 plantsApp.animation = {};
-plantsApp.animation.animationEngine = {};
+plantsApp.animation = {};
 
 // plantsApp.animation.shapeType;
 let shapeType = 'leaf';
 let selection = shapes[shapeType];
 let shape = selection.shape;
-// let color = selection.color;
-let currentPosition = 0;
-
-// Creating array of animation grids
-plantsApp.animation.arrayGenerator = function (gridNumber) {
-	blocksArray = $(`.tileGrid${gridNumber} > div`).toArray();
-};
+let initialPosition = 2;
+let currentPosition = initialPosition;
 
 // Drawing the shapes
-plantsApp.animation.animationEngine.draw = function () {
+plantsApp.animation.draw = function () {
 	// console.log(color);
 	console.log(selection);
 	if (selection.outline) {
@@ -461,14 +458,14 @@ plantsApp.animation.animationEngine.draw = function () {
 };
 
 // Undraw the shape
-plantsApp.animation.animationEngine.undraw = function () {
+plantsApp.animation.undraw = function () {
 	shape.forEach((index) => {
 		if (selection.outline) {
 			blocksArray[currentPosition + index].classList.remove(
 				`shapeBlock${shapeType}`
 			);
 			blocksArray[currentPosition + index].classList.remove(
-				`shapeBlockoutline`
+				'shapeBlockoutline'
 			);
 		}
 		blocksArray[currentPosition + index].classList.remove(
@@ -477,80 +474,30 @@ plantsApp.animation.animationEngine.undraw = function () {
 	});
 };
 
-// Make shapes move down at set interval (1s)
-// WHERE DOES THIS GO IN plantsApp OBJECT?
-
 // Shapes falling function
-plantsApp.animation.animationEngine.fallingShapes = function () {
-	plantsApp.animation.animationEngine.undraw();
+plantsApp.animation.fallingShapes = function () {
+	plantsApp.animation.undraw();
 	currentPosition += width;
-	plantsApp.animation.animationEngine.draw();
-	plantsApp.animation.animationEngine.landing();
+	plantsApp.animation.draw();
+	plantsApp.animation.landing();
 };
 
 // Draw another shape upon landing
-plantsApp.animation.animationEngine.landing = function () {
+plantsApp.animation.landing = function () {
 	if (
 		shape.some((index) =>
 			blocksArray[currentPosition + index].classList.contains('landed')
 		)
 	) {
-		currentPosition = 0;
+		currentPosition = initialPosition;
 	}
 	// New shape falling
-	plantsApp.animation.animationEngine.draw();
+	plantsApp.animation.draw();
 };
 
 // Speed of animation
-plantsApp.animation.animationEngine.speed = function () {
-	setInterval(plantsApp.animation.animationEngine.fallingShapes, 200);
-};
-
-// Animation start
-plantsApp.animation.start = function (grid) {
-	let blocksArray = plantsApp.animation.arrayGenerator(grid);
-	plantsApp.animation.animationEngine.speed();
-};
-
-// Animation in form section
-// plantsApp.animation.formSection = function () {
-// 	{
-// 		blocksArray = plantsApp.animation.arrayGenerator(2);
-// 		plantsApp.animation.speed();
-// 	}
-// 	{
-// 		blocksArray = plantsApp.animation.arrayGenerator(1);
-// 		plantsApp.animation.speed();
-// 	}
-// };
-
-// Capture user input
-plantsApp.formSubmit = function () {
-	$('form').on('submit', function (e) {
-		e.preventDefault();
-		console.log('submit');
-		$('.resultsGrid').empty();
-		const userInput = $('input:checked').val();
-		const resultsArr = plantsApp.filter(userInput).slice(0, 6);
-		// console.log(resultsArr);
-		plantsApp.displayResults(resultsArr);
-
-		const clicked = e.target;
-		console.log(clicked);
-		// const hash = $(this).attr('dataTarget');
-		// const target = $('#' + hash);
-		// Disable default clicking link behavior
-		// e.preventDefault();
-		// $('html, body').animate(
-		// 	{
-		// 		scrollTop: $(target).offset().top,
-		// 	},
-		// 	800,
-		// 	function () {
-		// 		window.location.hash = hash;
-		// 	}
-		// );
-	});
+plantsApp.animation.speed = function () {
+	setInterval(plantsApp.animation.fallingShapes, 200);
 };
 
 // Filter database with user input
@@ -571,36 +518,15 @@ plantsApp.displayResults = function (arr) {
 	});
 };
 
-// Smooth scroll function
-plantsApp.smoothScroll = function () {
-	$('button').on('click', function (e) {
-		console.log('Scrolling');
-		const hash = $(this).attr('dataTarget');
-		const target = $('#' + hash);
-		$('#whatevermyid');
-		// Disable default clicking link behavior
-		e.preventDefault();
-		$('html, body').animate(
-			{
-				scrollTop: $(target).offset().top,
-			},
-			800,
-			function () {
-				window.location.hash = hash;
-			}
-		);
-	});
-};
-
 // Init function
 plantsApp.init = function () {
+	// Smooth scroll effect
 	$('.btnScroll').on('click', function (e) {
-		console.log(e);
 		const hash = $(this).attr('dataTarget');
 		const target = $('#' + hash);
-		$('#whatevermyid');
 		// Disable default clicking link behavior
 		e.preventDefault();
+		// Smooth scroll animation via jquery
 		$('html, body').animate(
 			{
 				scrollTop: $(target).offset().top,
@@ -610,11 +536,14 @@ plantsApp.init = function () {
 				window.location.hash = hash;
 			}
 		);
+		plantsApp.animation.speed();
 	});
 
+	// Form submit event and storing input
+	// Smooth scrolling for form submit event
 	$('form').on('submit', function (e) {
+		// Disable default clicking link behavior
 		e.preventDefault();
-		console.log('submit');
 		$('.resultsGrid').empty();
 		const userInput = $('input:checked').val();
 		const resultsArr = plantsApp.filter(userInput).slice(0, 6);
@@ -622,11 +551,8 @@ plantsApp.init = function () {
 		plantsApp.displayResults(resultsArr);
 
 		const hash = $(this).attr('dataTarget');
-		// console.log(hash);
-
 		const target = $('#' + hash);
-		$('#whatevermyid');
-		// Disable default clicking link behavior
+
 		e.preventDefault();
 		$('html, body').animate(
 			{
@@ -637,29 +563,22 @@ plantsApp.init = function () {
 				window.location.hash = hash;
 			}
 		);
-		// const clicked = e.target;
-		// console.log(clicked);
-		// const hash = $(this).attr('dataTarget');
-		// const target = $('#' + hash);
-		// Disable default clicking link behavior
-		// e.preventDefault();
-		// $('html, body').animate(
-		// 	{
-		// 		scrollTop: $(target).offset().top,
-		// 	},
-		// 	800,
-		// 	function () {
-		// 		window.location.hash = hash;
-		// 	}
-		// );
+		// Stopping animation in section 2 (form) & starting animation in section 3 (results)
+		$('.animationGrid1 > div').css('background-color', 'transparent');
+		$('.animationGrid2 > div').css('background-color', 'transparent');
+		initialPosition = 0;
+		currentPosition = initialPosition;
+		shapeType = userInput;
+		selection = shapes[shapeType];
+		shape = selection.shape;
+		blocksArray = $('.animationGrid3 > div').toArray();
+		console.log(shapeType);
+		plantsApp.animation.speed();
 	});
 	// plantsApp.animation.start(1);
 	// plantsApp.animation.start(2);
 	// plantsApp.animation.arrayGenerator(2);
 	// plantsApp.animation.formSection();
-	// plantsApp.animation.speed();
-	// plantsApp.formSubmit();
-	// plantsApp.smoothScroll();
 };
 
 $(function () {

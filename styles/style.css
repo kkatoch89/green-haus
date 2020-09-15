@@ -382,7 +382,7 @@ h2 {
   font-family: 'Press Start 2P', cursive;
 }
 
-.tileGrid {
+.animationGrid {
   width: 24rem;
   height: 20rem;
   display: -webkit-box;
@@ -392,13 +392,13 @@ h2 {
       flex-wrap: wrap;
 }
 
-.tileGrid div {
+.animationGrid div {
   height: 2rem;
   width: 2rem;
   border: 1px solid black;
 }
 
-.tileGrid .hidden .landed {
+.animationGrid .hidden .landed {
   background: orangered;
 }
 
@@ -506,19 +506,18 @@ header .descriptionContainer {
   display: flex;
 }
 
-.formSection .tileGrid {
+.formSection .animationGrid {
   position: absolute;
 }
 
-.formSection .tileGrid1 {
-  top: 0%;
+.formSection .animationGrid1 {
+  top: -10rem;
   left: 0;
 }
 
-.formSection .tileGrid2 {
-  bottom: 0;
+.formSection .animationGrid2 {
+  top: 0;
   right: 0;
-  rotate: 180deg;
 }
 
 form {
@@ -576,7 +575,6 @@ input[type='radio']:focus + label::before {
 
 .resultsSection {
   background: #d5e6e4;
-  position: relative;
   overflow: hidden;
 }
 
@@ -585,14 +583,16 @@ input[type='radio']:focus + label::before {
 }
 
 .resultsSection .contentContainer {
+  position: relative;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
 }
 
-.resultsSection .tileGrid {
+.resultsSection .animationGrid {
   position: absolute;
   top: 0;
+  right: 0;
 }
 
 .resultsContainer {
