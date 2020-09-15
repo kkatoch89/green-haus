@@ -10,39 +10,24 @@
 .animationGrid div {
 	height: 2rem;
 	width: 2rem;
-	border: 1px solid black;
-	// background-color: orangered;
-}
-
-.landed {
-	// background: orangered;
-}
-
-.animationGrid .hidden {
-	// background: royalblue;
-	// visibility: hidden;
-	// border-bottom: 2px solid yellow;
-
-	& .landed {
-		background: orangered;
-	}
+	// border: 1px solid black;
 }
 
 .shapeBlock {
 	&sun {
-		background: yellow;
+		background: #ffc107;
 	}
 
 	&pets {
-		background: #333;
+		background: #2c3e50;
 	}
 
 	&leaf,
 	&lowMaint {
-		background: yellowgreen;
+		background: #78e08f;
 	}
 
 	&outline {
-		background: green;
+		background: #427c4e;
 	}
 }

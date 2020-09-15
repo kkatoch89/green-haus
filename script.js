@@ -65,6 +65,7 @@ const shapes = {
 			width * 10 + 6,
 			width * 10 + 7,
 		],
+		title: "These plants won't kill Mr Sprinkles!",
 	},
 	leaf: {
 		shape: [
@@ -330,6 +331,7 @@ const shapes = {
 			width * 16 + 4,
 			width * 16 + 7,
 		],
+		title: 'These plants are pretty tough!',
 	},
 	sun: {
 		shape: [
@@ -371,6 +373,7 @@ const shapes = {
 			width * 9 + 9,
 			width * 10 + 5,
 		],
+		title: 'These plants love a good tan!',
 	},
 };
 
@@ -496,8 +499,8 @@ plantsApp.animation.landing = function () {
 };
 
 // Speed of animation
-plantsApp.animation.speed = function () {
-	setInterval(plantsApp.animation.fallingShapes, 200);
+plantsApp.animation.speed = function (speed) {
+	setInterval(plantsApp.animation.fallingShapes, speed);
 };
 
 // Filter database with user input
@@ -518,6 +521,11 @@ plantsApp.displayResults = function (arr) {
 	});
 };
 
+// Results section change title when user submits input
+plantsApp.resultsTitle = function () {
+	$('h2').text("We've found the perfect plants for you!");
+};
+
 // Init function
 plantsApp.init = function () {
 	// Smooth scroll effect
@@ -536,7 +544,7 @@ plantsApp.init = function () {
 				window.location.hash = hash;
 			}
 		);
-		plantsApp.animation.speed();
+		plantsApp.animation.speed(200);
 	});
 
 	// Form submit event and storing input
@@ -546,7 +554,7 @@ plantsApp.init = function () {
 		e.preventDefault();
 		$('.resultsGrid').empty();
 		const userInput = $('input:checked').val();
-		const resultsArr = plantsApp.filter(userInput).slice(0, 6);
+		const resultsArr = plantsApp.filter(userInput).slice(0, 9);
 		console.log(resultsArr);
 		plantsApp.displayResults(resultsArr);
 
@@ -563,9 +571,11 @@ plantsApp.init = function () {
 				window.location.hash = hash;
 			}
 		);
+
 		// Stopping animation in section 2 (form) & starting animation in section 3 (results)
 		$('.animationGrid1 > div').css('background-color', 'transparent');
 		$('.animationGrid2 > div').css('background-color', 'transparent');
+
 		initialPosition = 0;
 		currentPosition = initialPosition;
 		shapeType = userInput;
@@ -573,12 +583,11 @@ plantsApp.init = function () {
 		shape = selection.shape;
 		blocksArray = $('.animationGrid3 > div').toArray();
 		console.log(shapeType);
-		plantsApp.animation.speed();
+		plantsApp.animation.speed(500);
+
+		// Update results page title
+		$('.resultsTitle').text(selection.title);
 	});
-	// plantsApp.animation.start(1);
-	// plantsApp.animation.start(2);
-	// plantsApp.animation.arrayGenerator(2);
-	// plantsApp.animation.formSection();
 };
 
 $(function () {

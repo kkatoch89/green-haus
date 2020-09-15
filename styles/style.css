@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
 a,
 abbr,
 acronym,
@@ -349,7 +350,6 @@ body {
 }
 
 .wrapper {
-  border: solid 1px orangeRed;
   width: 95%;
   max-width: 1360px;
   margin: 0 auto;
@@ -378,7 +378,7 @@ section {
 
 h2 {
   font-weight: 700;
-  font-size: 3rem;
+  font-size: 4rem;
   font-family: 'Press Start 2P', cursive;
 }
 
@@ -395,27 +395,22 @@ h2 {
 .animationGrid div {
   height: 2rem;
   width: 2rem;
-  border: 1px solid black;
-}
-
-.animationGrid .hidden .landed {
-  background: orangered;
 }
 
 .shapeBlocksun {
-  background: yellow;
+  background: #ffc107;
 }
 
 .shapeBlockpets {
-  background: #333;
+  background: #2c3e50;
 }
 
 .shapeBlockleaf, .shapeBlocklowMaint {
-  background: yellowgreen;
+  background: #78e08f;
 }
 
 .shapeBlockoutline {
-  background: green;
+  background: #427c4e;
 }
 
 button {
@@ -432,7 +427,6 @@ button {
 }
 
 header {
-  border: solid 1px orangered;
   height: 100vh;
   background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.65))), url(../../assets/hero-img.jpg);
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.65)), url(../../assets/hero-img.jpg);
@@ -500,6 +494,8 @@ header .descriptionContainer {
 }
 
 .formSection .contentContainer {
+  border-left: 3px solid #d5e6e4;
+  border-right: 3px solid #d5e6e4;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -550,6 +546,12 @@ input[type='radio'] + label::before {
   vertical-align: middle;
 }
 
+input[type='radio']:checked + label {
+  font-size: 25px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 3px #05386b;
+}
+
 input[type='radio']:checked + label::before {
   background: #d5e6e4;
 }
@@ -557,13 +559,14 @@ input[type='radio']:checked + label::before {
 input[type='radio']:checked + label::after {
   content: '';
   position: absolute;
-  top: 30.4px;
-  left: 19.6px;
-  border: 4px solid #05386b;
-  border-radius: 50%;
-  background: #05386b;
-  height: 10px;
-  width: 10px;
+  top: 35.4px;
+  left: 16.6px;
+  border-left: 3px solid #05386b;
+  border-bottom: 3px solid #05386b;
+  height: 15px;
+  width: 30px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 input[type='radio']:focus + label::before {
@@ -580,13 +583,22 @@ input[type='radio']:focus + label::before {
 
 .resultsSection h2 {
   color: #05386b;
+  padding-bottom: 4rem;
+  text-align: center;
 }
 
 .resultsSection .contentContainer {
+  padding-left: 8rem;
   position: relative;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-left: 3px solid #32837e;
+  border-right: 3px solid #32837e;
+}
+
+.resultsSection .textContent {
+  width: 75%;
 }
 
 .resultsSection .animationGrid {
@@ -595,21 +607,12 @@ input[type='radio']:focus + label::before {
   right: 0;
 }
 
-.resultsContainer {
-  display: -ms-grid;
-  display: grid;
-      grid-template-areas: 'resultsGrid AnimationContainer ';
-}
-
 .resultsGrid {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (minmax(200px, 1fr))[auto-fill];
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 2rem;
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: resultsGrid;
 }
 
 .resultsContent {

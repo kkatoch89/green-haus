@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+
 html {
 	font-size: 62.5%;
 }
@@ -9,7 +11,7 @@ body {
 }
 
 .wrapper {
-	@include devBorder(orangeRed);
+	// @include devBorder(orangeRed);
 	width: 95%;
 	max-width: 1360px;
 	margin: 0 auto;
@@ -31,6 +33,6 @@ section {
 
 h2 {
 	font-weight: 700;
-	font-size: 3rem;
+	font-size: 4rem;
 	font-family: 'Press Start 2P', cursive;
 }
